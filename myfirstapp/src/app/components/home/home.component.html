@@ -1,0 +1,109 @@
+<!-- <a routerLink="/addcustomer" mat-raised-button color="accent" (click)="btnClick()" > Add Employee</a> -->
+
+<div class="m-3">
+  
+  <div class="wrap">
+    <!-- <div class="search">
+      
+      <mat-form-field class="field" appearance="outline">
+        <mat-label>Enter employee name to search</mat-label>
+        <input [(ngModel)]="term" matInput>
+    </mat-form-field>
+    </div> -->
+
+    <!-- <div >
+      <table *ngIf="term">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Expenditure</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let customer of customers | filter:term">
+          <td>{{customer.id}}</td>
+          <td>{{customer.name}}</td>
+          <td>{{customer.expenditure}}</td>
+          <td>{{customer.email}}</td>
+          <button (click)="doDelete(customer.id)" mat-raised-button color="accent"><i class="fa fa-futboll-0">Delete</i></button> 
+          <a routerLink="/updatecustomer" mat-raised-button color="primary" (click)="btnClick()"><i class="fa fa-futboll-0">Update</i></a>
+        </tr>
+        
+      </table>
+    </div> -->
+  </div>
+</div>
+
+<div class="container">
+    <h1>Hi Welcome to the Employee Management applications</h1>
+    <br>
+
+<!-- <a routerLink="/searchAllCustomer" mat-flat-button color="primary" (click)="btnClick()">Search for all Employee data only</a> -->
+
+<!-- <a routerLink="/searchAllCustomersWithSeller" mat-flat-button color="primary" (click)="btnClick()">Search for all Employee along with the employer data</a> -->
+
+<!-- <a routerLink="/deleteCustomer" mat-flat-button color="primary" (click)="btnClick()">Click to Delete Employee data</a> -->
+
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+   
+    
+    
+    <h2>Employee data</h2>
+    <div class="search">
+      
+      <mat-form-field class="field" appearance="outline">
+        <mat-label for="search">Enter employee name to search</mat-label>
+        <!-- <input [(ngModel)]="term" matInput> -->
+        <input type="text" [(ngModel)]="searchvalue" id="search" matInput>
+    </mat-form-field>
+    </div>
+    
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Expenditure</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+      <tr  *ngFor="let customer of customers | searchfilter:searchvalue">
+        <td>{{customer.id}} </td> 
+        <td>{{customer.name}}</td>
+        <td>{{customer.expenditure}}</td>
+        <td>{{customer.email}}</td>
+        <!-- <button (click)="doDelete(customer.id)" mat-raised-button color="accent"><i class="fa fa-futboll-0">Delete</i></button>  -->
+        <!-- <button mat-raised-button color="accent"  mwlConfirmationPopover [popoverTitle]="popoverTitle" 
+        [popoverMessage]="popoverMessage"
+        placement="left"
+        (confirm)="doDelete(customer.id)"
+        (cancel)="cancelClicked=true">Delete</button> -->
+        <button  (click)="doDeleteWithPopUp(customer.id)" mat-raised-button color="accent" ><i class="fa fa-futboll-0">Delete</i></button>
+        <a class="updatebtn" routerLink="/updatecustomer/{{customer.id}}" mat-raised-button color="primary" ><i >Update</i></a>
+      </tr>
+      
+    </table>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator> -->
+
+    <br>
+    <br>
+    
+    <a routerLink="/searchAllCustomersWithSeller" mat-flat-button color="primary" (click)="btnClick()">Search for all Employee along with the employer data</a>
+    <mat-spinner *ngIf="showLoadingIndicator" style="margin: auto;"> </mat-spinner>
+</div>
+

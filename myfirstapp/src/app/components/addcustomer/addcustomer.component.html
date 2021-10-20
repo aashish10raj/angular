@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="card">
+
+        <form (ngSubmit)="doSubmitForm()">
+
+        <h1>Add Employee</h1>
+       
+        <mat-form-field class="field" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input required #name="ngModel" name="name" [(ngModel)]="customer.name" matInput>
+            <mat-error *ngIf="name.invalid && name.touched">Mandatory field</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="field" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input #email="ngModel" name="email" [(ngModel)]="customer.email" email matInput>
+            <mat-error *ngIf="email.invalid && email.touched">Email not valid</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="field" appearance="outline">
+            <mat-label>Expenditure</mat-label>
+            <input #exp="ngModel" name="expenditure" [(ngModel)]="customer.expenditure" pattern="^[0-9]+$" matInput>
+            <mat-error *ngIf="exp.invalid && exp.touched">Only numbers allowed</mat-error>
+            
+        </mat-form-field>
+        <mat-form-field class="field" appearance="outline">
+            <mat-label>Seller id</mat-label>
+            <input #name="ngModel" name="sid" [(ngModel)]="customer.seller.id" matInput>
+
+        </mat-form-field>
+          <div class="text-center">
+
+            <mat-spinner *ngIf="flag" style="margin: auto;"> </mat-spinner>
+            <button  type="submit" mat-raised-button color="primary">Send</button>
+            <button type="reset" mat-raised-button color="accent">Reset</button>
+
+
+          </div>
+
+        </form>
+
+        <!-- {{ data | json }} -->
+
+
+    </div>
+
+</div>
+
+
+<app-delete [parentData]="parentData" (sendData)="sendData($event)"></app-delete>
